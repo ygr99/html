@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "fonts",
+			"path": "..\\..\\..\\BaiduNetdiskDownload\\前端基础-PC端品优购项目\\11-前端基础-PC端品优购项目\\素材\\icomoon\\fonts"
+		},
+		{
+			"name": "pink老师品优购项目",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "pink老师品优购项目"
+	}
+}
