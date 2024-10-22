@@ -1,0 +1,47 @@
+[
+{
+  "oldsrc": "http://cloud.hunger-valley.com/music/玫瑰.mp3",
+  "src": "./music/玫瑰 - 贰佰.mp3",
+  "title": "玫瑰",
+  "auther": "贰佰",
+  "img": "http://cloud.hunger-valley.com/17-9-22/28212907.jpg"
+}
+, {
+  "oldsrc": "http://cloud.hunger-valley.com/music/ifyou.mp3",
+  "src": "./music/ifyou.mp3",
+  "title": "IF YOU1",
+  "auther": "Big Bang",
+  "img": "http://cloud.hunger-valley.com/17-9-22/87786461.jpg"
+}
+, {
+  "src": "./music/这是我一生中最勇敢的瞬间 - 棱镜.flac",
+  "title": "这是我一生中最勇敢的瞬间",
+  "auther": "棱镜",
+  "img": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fci.xiaohongshu.com%2Fec4bdb11-f20c-d131-0b86-34a09e15bcd9%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fci.xiaohongshu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644733164&t=71dc378d91b3d808cc2d2eae14a5d0fd"
+}
+,{
+  "src": "./music/这世界那么多人 - 莫文蔚.flac",
+  "title": "这世界那么多人",
+  "auther": "莫文蔚",
+  "img": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnimg.ws.126.net%2F%3Furl%3Dhttp%3A%2F%2Fdingyue.ws.126.net%2F2021%2F0606%2F8ac2855aj00qu9sxn000hd000jy00cup.jpg%26thumbnail%3D650x2147483647%26quality%3D80%26type%3Djpg&refer=http%3A%2F%2Fnimg.ws.126.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644733986&t=16bda1516e28b12524b0dffa6e47abeb"
+}
+,{
+  "src": "./music/成长的路口 - 咖啡因乐队.mp3",
+  "title": "成长的路口",
+  "auther": "咖啡因乐队",
+  "img": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwsing.bssdl.kugou.com%2F3d56caf59f190e54516505f2be57ce55.jpg&refer=http%3A%2F%2Fwsing.bssdl.kugou.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644734710&t=976717e2f3bb1cf45670486995bffd3f"
+}
+,{
+  "src": "./music/Always with me（口琴） - 园园.mp3",
+  "title": "Always with me（口琴）",
+  "auther": "园园",
+  "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp5xda3QPX7PGPVIn3dcswuEPOGG5965Zz2w&usqp=CAU"
+}
+,{
+  "src": "./music/南山南 - 张磊.mp3",
+  "title": "南山南",
+  "auther": "张磊",
+  "img": "https://fijiymfile.pcapqz.com/uploads/2020-12/17/odwrrrodham.jpg"
+}
+
+]
