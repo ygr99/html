@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+</head>
+
+<body>
+    <main>
+    </main>
+
+    <script>
+        // 创建一个Sketch函数
+        function setup() {
+            createCanvas(800, 600);
+        }
+
+        // 创建一个Draw函数
+        function draw() {
+            background(240);
+
+            // 绘制海洋
+            fill(0, 0, 255, 100);
+            noStroke();
+            rect(0, height * 0.7, width, height * 0.3)
+
+
+
+            // 绘制船
+            fill(255);
+            stroke(0);
+            strokeWeight(2);
+            beginShape();
+            vertex(width * 0.3, height * 0.7);
+            vertex(width * 0.3, height * 0.5);
+            vertex(width * 0.7, height * 0.5);
+            vertex(width * 0.7, height * 0.7);
+            endShape(CLOSE);
+
+        }
+
+
+    </script>
+</body>
+
+</html>

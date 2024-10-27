@@ -1,0 +1,35 @@
+body {
+    font-size: 0.9em;
+    font-family: verdana, arial, sans-serif;
+    background-color: #000;
+    margin: auto;
+}
+
+.htmleaf-header {
+    padding: 2em 190px 1em;
+    text-align: center;
+}
+
+.htmleaf-demo {
+    width: 100%;
+}
+
+.htmleaf-demo a {
+    color: #fff;
+    background: #444;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.6em 1em;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    font-weight: 200;
+}
+
+.htmleaf-demo a:hover {
+    opacity: 0.6;
+}
+
+.htmleaf-demo a.current {
+    background: #000;
+    color: #fff;
+}

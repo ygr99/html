@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疯狂星期四 文案收藏展示网页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e9e9e9;
+            border-radius: 5px;
+        }
+
+        .quote button {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .add-quote {
+            margin-top: 20px;
+        }
+
+        .add-quote input {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .add-quote button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .add-quote textarea {
+            width: 90%;
+            padding: 10px;
+            height: 50px;
+            /* resize: none; */
+        }
+
+        .message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>疯狂星期四 文案收藏展示网页</h1>
+        <div class="search-quote">
+            <input type="text" id="searchQuote" placeholder="搜索文案">
+            <button onclick="searchQuotes()">搜索</button>
+            <button onclick="resetQuotes()">重置</button>
+        </div>
+        <div class="add-quote">
+            <textarea type="text" id="newQuote" placeholder="输入新的文案"></textarea>
+            <button onclick="addQuote()">添加文案</button>
+        </div>
+        <div id="quotes"></div>
+    </div>
+
+    <div class="message" id="message">文案已复制到剪贴板！</div>
+
+    <script>
+        // 从本地存储加载文案
+        function loadQuotes() {
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+            let quotesContainer = document.getElementById('quotes');
+            quotesContainer.innerHTML = '';
+            quotes.forEach((quote, index) => {
+                let quoteElement = document.createElement('div');
+                quoteElement.className = 'quote';
+                quoteElement.innerHTML = `${quote} <button onclick="copyQuote(${index})">复制</button> <button onclick="deleteQuote(${index})">删除</button>`;
+                quotesContainer.appendChild(quoteElement);
+            });
+        }
+
+        // 添加文案
+        function addQuote() {
+            let newQuote = document.getElementById('newQuote').value;
+            if (newQuote) {
+                let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+                quotes.push(newQuote);
+                localStorage.setItem('quotes', JSON.stringify(quotes));
+                loadQuotes();
+                document.getElementById('newQuote').value = '';
+            }
+        }
+
+        // 删除文案
+        function deleteQuote(index) {
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+            quotes.splice(index, 1);
+            localStorage.setItem('quotes', JSON.stringify(quotes));
+            loadQuotes();
+        }
+
+        // 复制文案
+        function copyQuote(index) {
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+            let quoteToCopy = quotes[index];
+            let tempInput = document.createElement('input');
+            tempInput.value = quoteToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            let message = document.getElementById('message');
+            message.style.display = 'block';
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 1000);
+        }
+
+        // 搜索文案
+        function searchQuotes() {
+            let searchTerm = document.getElementById('searchQuote').value.toLowerCase();
+            let quotes = JSON.parse(localStorage.getItem('quotes')) || [];
+            let quotesContainer = document.getElementById('quotes');
+            quotesContainer.innerHTML = '';
+            quotes.forEach((quote, index) => {
+                if (quote.toLowerCase().includes(searchTerm)) {
+                    let quoteElement = document.createElement('div');
+                    quoteElement.className = 'quote';
+                    quoteElement.innerHTML = `${quote} <button onclick="copyQuote(${index})">复制</button> <button onclick="deleteQuote(${index})">删除</button>`;
+                    quotesContainer.appendChild(quoteElement);
+                }
+            });
+        }
+
+        // 重置文案
+        function resetQuotes() {
+            document.getElementById('searchQuote').value = '';
+            loadQuotes();
+        }
+
+        // 初始加载文案
+        loadQuotes();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Rubik's Cube</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+
+    <script>
+        // 创建场景
+        const scene = new THREE.Scene();
+
+        // 创建透视相机
+        const camera = new THREE.PerspectiveCamera(
+            75,  // 视角（field of view）
+            window.innerWidth / window.innerHeight,  // 窗口宽高比
+            0.1,  // 近裁剪面距离
+            1000  // 远裁剪面距离
+        );
+
+        // 将相机放置在 (0, 0, 5) 距离场景中心的位置，并朝向场景中心
+        camera.position.set(0, 0, 5);
+        camera.lookAt(scene.position);
+
+        // 创建 WebGL 渲染器
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // 创建魔方几何体
+        const cubeSize = 1;
+        const cubeSegments = 3;
+        const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize, cubeSegments, cubeSegments, cubeSegments);
+
+        // 创建魔方材质（这里使用基础的 Lambert 材质）
+        const materials = [
+            new THREE.MeshLambertMaterial({ color: 0xff0000 }),  // 右侧
+            new THREE.MeshLambertMaterial({ color: 0xff6600 }),  // 左侧
+            new THREE.MeshLambertMaterial({ color: 0xffff00 }),  // 顶部
+            new THREE.MeshLambertMaterial({ color: 0xffffff }),  // 底部
+            new THREE.MeshLambertMaterial({ color: 0x00ff00 }),  // 正面
+            new THREE.MeshLambertMaterial({ color: 0x0000ff })   // 背面
+        ];
+
+        // 创建魔方网格对象
+        const cube = new THREE.Mesh(geometry, materials);
+        scene.add(cube);  // 将魔方添加到场景中
+
+        // 添加环境光
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 环境光颜色，强度
+        scene.add(ambientLight);
+
+        // 添加定向光
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // 光颜色，强度
+        directionalLight.position.set(1, 1, 1); // 光源位置
+        scene.add(directionalLight);
+
+        // 动画循环 - 每帧更新物体位置并重新渲染
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 让魔方绕其自身 Y 轴旋转
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();  // 启动动画循环
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好看键盘样式</title>
+    <style>
+        body {
+            /* 里面的元素居中 */
+            text-align: center;
+            /* 背景颜色 */
+            background-color: #f8f9fa;
+
+        }
+
+        kbd {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            padding: .2rem .4rem;
+            font-size: 87.5%;
+            color: #fff;
+            background-color: #212529;
+            border-radius: .2rem
+        }
+
+        .bg-green {
+            background-color: #28a745 !important
+        }
+
+        .bg-blue {
+            background-color: #17a2b8 !important
+        }
+
+        .bg-red {
+            background-color: #dc3545 !important
+        }
+    </style>
+</head>
+
+<body>
+    <table class="table table-sm" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">快捷键</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><kbd>Ctrl</kbd></td>
+            </tr>
+            <tr>
+                <td><kbd>Ctrl</kbd> + <kbd class="bg-green">T</kbd></td>
+            </tr>
+            <tr>
+                <td><kbd class="bg-red">Alt</kbd> + <kbd class="bg-green">T</kbd></td>
+            </tr>
+            <tr>
+                <td><kbd class="bg-blue">Shift</kbd> + <kbd class="bg-green">T</kbd></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

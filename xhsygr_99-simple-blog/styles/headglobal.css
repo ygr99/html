@@ -1,0 +1,29 @@
+body {
+  background-color: #fafafa;
+  font-family: sans-serif;
+}
+
+header h1,
+header nav,
+footer {
+  text-align: center;
+}
+
+nav,main {
+  width: 600px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+}
+ul li {
+  display: inline-block;
+}
+nav ul li a {
+  color: blue;
+  font-size: 18px;
+  /* text-decoration: none; */
+}
+
+

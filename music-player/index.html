@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>音乐播放器</title>
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <!-- 音乐面板 -->
+  <div class="shell">
+
+    <!-- 音乐图片 -->
+    <div class="cover"></div>
+
+    <div class="musicbox">
+
+      <div class="music-panel">
+
+        <div class="info">
+          <div class="title">My song</div>
+          <div class="auther">ruoyu</div>
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="bar">
+          <div class="progress-total"></div>
+          <div class="progress-now"></div>
+        </div>
+        <span class="time">0:00</span>
+        <span class="duration">0:00</span>
+      </div>
+
+      <div class="music">
+        <div class="control">
+          <span class="back"><i class="fa fa-step-backward"></i></span>
+          <span class="play"><i class="fa fa-pause"></i></span>
+          <span class="forward"><i class="fa fa-step-forward"></i></span>
+        </div>
+
+
+
+      </div>
+
+      <button class="switchBtn">歌单</button>
+      <ul class="list">
+      </ul>
+
+    </div>
+  </div>
+
+
+  <script>
+    // var cover = document.querySelector('.cover') 将选择页面中class为“cover”的元素；
+    var cover = document.querySelector('.cover')
+    // 将选择class为"musicbox”并且包含class为“back”的元素；
+    var backBtn = document.querySelector('.musicbox .back')
+    var playBtn = document.querySelector('.musicbox .play')
+    var forwardBtn = document.querySelector('.musicbox .forward')
+
+    var titleNode = document.querySelector('.musicbox .title')
+    var authorNode = document.querySelector('.musicbox .auther')
+
+    var timeNode = document.querySelector('.musicbox .time')
+    var progressBarNode = document.querySelector('.musicbox .progress .bar')
+    var progressNowNode = document.querySelector('.musicbox .progress-now')
+
+    var musicListContainer = document.querySelector('.musicbox .list')
+    var switchBtn = document.querySelector('.switchBtn')
+
+    musicListContainer.style.display = "none";
+
+    // 点击按钮时切换ul的显示状态
+    switchBtn.addEventListener('click', function () {
+      musicListContainer.style.display = (musicListContainer.style.display == "none") ? "block" : "none";
+    });
+
+    //     var timer：用于定义一个计时器；
+    // var musicList：用于存储音乐列表；
+    // var music：用于创建一个新的音频对象；
+    // music.autoplay：将音频设置为自动播放；
+    // var musicIndex：用于存储当前音乐的索引。
+    var timer;
+    var musicList;
+
+    var music = new Audio();
+    music.autoplay = true;
+    var musicIndex = 0;
+
+
+    // 这段代码是在调用函数getMusic()，它接受一个回调函数，将音乐列表传入回调函数，
+    // 并将该音乐列表存储到musiclist中，
+    // 然后调用setPlaylist（）和loadMusic（）来设置播放列表并加载音乐。
+
+    getMusic(function (list) {
+      musicList = list
+      setPlaylist(list)
+      loadMusic(list[musicIndex])
+    })
+
+
+    //  这段代码是在播放按钮的onclick事件上定义的函数，它对播放按钮中的图标进行检查，
+    //  如果该图标包含fa-play，则使用music.play（）播放音乐，
+    //  反之使用music.pause（）暂停音乐，
+    //  然后使用icon.classList.toggle（'fa-play'）和icon.classList.toggle（'fa-pause'）来切换图标。
+
+    playBtn.onclick = function () {
+      var icon = this.querySelector('.fa')
+      if (icon.classList.contains('fa-play')) {
+        music.play()
+      } else {
+        music.pause()
+      }
+      icon.classList.toggle('fa-play')
+      icon.classList.toggle('fa-pause')
+    }
+
+    // 这段代码是在将正向按钮，反向按钮和音乐的onended事件上定义的
+    // loadNextMusic（）和loadLastMusic（）函数，
+    // 同时将lmusic.shouldUpdate设置为true。
+
+    forwardBtn.onclick = loadNextMusic
+    backBtn.onclick = loadLastMusic
+    music.onended = loadNextMusic
+    music.shouldUpdate = true
+
+
+    // 这段代码是在音乐的onplaying和onpause事件上定义的函数，
+    // onplaying函数中会设置一个计时器，每秒调用一次updateProgress（）函数；
+    // 而onpause函数中则会清除计时器。
+    music.onplaying = function () {
+      timer = setInterval(function () {
+        updateProgress()
+      }, 1000)
+      console.log('play')
+    }
+    music.onpause = function () {
+      // console.log('pause')
+      clearInterval(timer)
+    }
+
+    // 这段代码是在音乐的ontimeupdate事件上定义updateProgress（）函数，
+    // 并在进度条节点的onclick事件上定义一个函数，它会计算出点击位置所占的百分比，
+    // 然后将音乐的当前时间设置为对应的百分比*音乐的总时长，最后设置进度条的style.width属性。
+    music.ontimeupdate = updateProgress
+
+    progressBarNode.onclick = function (e) {
+      var percent = e.offsetX / parseInt(getComputedStyle(this).width)
+      music.currentTime = percent * music.duration
+      progressNowNode.style.width = percent * 100 + "%"
+    }
+
+    // 这段代码是在音乐列表容器的onclick事件上定义的函数，
+    // 它会检查事件触发的目标是否是一个Li元素，
+    // 如果是，则遍历容器中的子元素，找到该元素对应的索引，
+    // 然后将该索引存储到musicIndex中，最后调用loadMusic（）来加载该音乐。
+    musicListContainer.onclick = function (e) {
+      if (e.target.tagName.toLowerCase() === 'li') {
+        for (var i = 0; i < this.children.length; i++) {
+          if (this.children[i] === e.target) {
+            musicIndex = i
+          }
+        }
+        console.log(musicIndex)
+        loadMusic(musicList[musicIndex])
+      }
+    }
+
+    // 这段代码是定义一个名为setPlaylist（）的函数，用于将传入的音乐列表中的信息创建为一个列表项，
+    // 然后将该列表项添加到一个文档片段中，最后将该文档片段添加到musicListContainer中。
+    function setPlaylist(musiclist) {
+      var container = document.createDocumentFragment()
+      musiclist.forEach(function (musicObj) {
+        var node = document.createElement('li')
+        node.innerText = musicObj.auther + '-' + musicObj.title
+        console.log(node)
+        container.appendChild(node)
+      })
+      musicListContainer.appendChild(container)
+    }
+
+
+    //  这段代码是定义一个名为loadMusic（）的函数，
+    //  用于将传入的歌曲对象中的信息加载到HTML元素中，
+    //  并将当前播放的歌曲列表项添加类playing。
+    function loadMusic(songObj) {
+      music.src = songObj.src
+      titleNode.innerText = songObj.title
+      authorNode.innerText = songObj.auther
+      cover.style.backgroundImage = 'url(' + songObj.img + ')'
+      for (var i = 0; i < musicListContainer.children.length; i++) {
+        musicListContainer.children[i].classList.remove('playing')
+      }
+      musicListContainer.children[musicIndex].classList.add('playing')
+    }
+
+
+    //  这段代码的作用是，它会通过musicIndex来遍历数组musicList中的元素，
+    //  当musicIndex等于musicList数组最大长度时，它会再从头开始遍历数组。
+    //  当然，这只是在播放音乐时得到正常循环播放的一种实现方式。
+    function loadNextMusic() {
+      musicIndex++
+      musicIndex = musicIndex % musicList.length
+      loadMusic(musicList[musicIndex])
+    }
+
+    // 这段代码的作用是，当musicIndex等于0时，
+    // 它会将musicIndex设置为musicList数组最大长度，从而正常循环播放音乐。
+    function loadLastMusic() {
+      musicIndex--
+      musicIndex = (musicIndex + musicList.length) % musicList.length
+      loadMusic(musicList[musicIndex])
+    }
+
+
+    // 首先它会通过music.currentTime/music.duration来计算当前播放的位置百分比，
+    // 然后将这个位置百分比设置给progressNowNode的style.width，
+    // 从而显示出当前的播放位置，另外它还会通过计算music.currentTime来显示出当前播放时间。
+    function updateProgress() {
+      var percent = (music.currentTime / music.duration) * 100 + '%'
+      progressNowNode.style.width = percent
+
+      var minutes = parseInt(music.currentTime / 60)
+      var seconds = parseInt(music.currentTime % 60) + ''
+      seconds = seconds.length == 2 ? seconds : '0' + seconds
+      timeNode.innerText = minutes + ':' + seconds
+    }
+
+    // 这段代码的作用是，从服务器获取music.json数据，
+    // 通过回调函数将服务器返回的数据转化为JSON格式，以便程序能够正确识别。
+    function getMusic(callback) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('get', 'music.json', true)
+      xhr.send()
+      xhr.onload = function () {
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+          callback(JSON.parse(xhr.responseText))
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

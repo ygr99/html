@@ -1,0 +1,38 @@
+<!-- 
+    这个程序创建了一个宽 400 像素，高 400 像素的画布，并在鼠标位置开始绘制白色圆形。 当按下鼠标按钮时，圆形颜色会变成黑色
+ -->
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+</head>
+
+<body>
+    <main>
+    </main>
+
+    <script>
+        function setup() {
+            createCanvas(400, 400);
+        }
+
+        function draw() {
+            background(220);
+            ellipse(50, 50, 80, 80);
+        }
+        // function setup() {
+        //     createCanvas(4000, 4000);
+        // }
+
+        // function draw() {
+        //     if (mouseIsPressed) {
+        //         fill(0);
+        //     } else {
+        //         fill(255);
+        //     }
+        //     ellipse(mouseX, mouseY, 80, 80);
+        // }
+    </script>
+</body>
+
+</html>

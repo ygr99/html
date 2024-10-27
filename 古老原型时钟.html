@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古老原型时钟</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0e6d6;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 16px solid #000000;
+            border-radius: 50%;
+            background: url('https://i.imgur.com/4Bf6dnO.png');
+            background-size: cover;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            pointer-events: none;
+        }
+
+        .hour {
+            width: 6px;
+            height: 70px;
+            background-color: #333;
+        }
+
+        .minute {
+            width: 4px;
+            height: 100px;
+            background-color: #555;
+        }
+
+        .second {
+            width: 2px;
+            height: 120px;
+            background-color: red;
+        }
+
+        .center {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hand hour" id="hour"></div>
+        <div class="hand minute" id="minute"></div>
+        <div class="hand second" id="second"></div>
+        <div class="center"></div>
+    </div>
+
+    <script>
+        function setTime() {
+            const now = new Date();
+            const hours = now.getUTCHours() + 8; // 北京时间比UTC时间多8小时
+            const minutes = now.getUTCMinutes();
+            const seconds = now.getUTCSeconds();
+
+            const hourElement = document.getElementById('hour');
+            const minuteElement = document.getElementById('minute');
+            const secondElement = document.getElementById('second');
+
+            const hourDegrees = ((hours % 12) / 12) * 360 + (minutes / 60) * 30;
+            const minuteDegrees = (minutes / 60) * 360;
+            const secondDegrees = (seconds / 60) * 360;
+
+            hourElement.style.transform = `rotate(${hourDegrees}deg)`;
+            minuteElement.style.transform = `rotate(${minuteDegrees}deg)`;
+            secondElement.style.transform = `rotate(${secondDegrees}deg)`;
+        }
+
+        setInterval(setTime, 1000);
+        setTime(); // Initial call to set the time immediately
+    </script>
+</body>
+
+</html>

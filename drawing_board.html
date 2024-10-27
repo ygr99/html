@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Board</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #drawing-board {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #canvas {
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        #controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #controls > * {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="drawing-board">
+        <canvas id="canvas"></canvas>
+        <div id="controls">
+            <button id="clear-button">Clear</button>
+            <button id="save-button">Save</button>
+            <button id="undo-button">Undo</button>
+            <button id="redo-button">Redo</button>
+            <button id="text-button">Add Text</button>
+            <input type="color" id="color-picker">
+            <input type="color" id="bg-color-picker">
+            <input type="range" id="brush-size" min="1" max="50" value="5">
+            <select id="shape-selector">
+                <option value="freehand">Freehand</option>
+                <option value="line">Line</option>
+                <option value="rectangle">Rectangle</option>
+                <option value="circle">Circle</option>
+            </select>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const clearButton = document.getElementById('clear-button');
+        const saveButton = document.getElementById('save-button');
+        const undoButton = document.getElementById('undo-button');
+        const redoButton = document.getElementById('redo-button');
+        const textButton = document.getElementById('text-button');
+        const colorPicker = document.getElementById('color-picker');
+        const bgColorPicker = document.getElementById('bg-color-picker');
+        const brushSize = document.getElementById('brush-size');
+        const shapeSelector = document.getElementById('shape-selector');
+
+        canvas.width = 800;
+        canvas.height = 600;
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let currentColor = colorPicker.value;
+        let currentSize = brushSize.value;
+        let currentShape = shapeSelector.value;
+        let startX, startY;
+
+        let history = [ctx.getImageData(0, 0, canvas.width, canvas.height)];
+        let historyIndex = 0;
+
+        function draw(e) {
+            if (!isDrawing) return;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = currentSize;
+            ctx.stroke();
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+
+        function saveHistory() {
+            if (historyIndex < history.length - 1) {
+                history = history.slice(0, historyIndex + 1);
+            }
+            history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            historyIndex++;
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', (e) => {
+            isDrawing = false;
+            if (currentShape === 'line') {
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = currentSize;
+                ctx.stroke();
+            } else if (currentShape === 'rectangle') {
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = currentSize;
+                ctx.strokeRect(startX, startY, e.offsetX - startX, e.offsetY - startY);
+            } else if (currentShape === 'circle') {
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = currentSize;
+                ctx.beginPath();
+                const radius = Math.sqrt(Math.pow(e.offsetX - startX, 2) + Math.pow(e.offsetY - startY, 2));
+                ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
+                ctx.stroke();
+            }
+            saveHistory();
+        });
+
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+
+        clearButton.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            saveHistory();
+        });
+
+        saveButton.addEventListener('click', () => {
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'my_drawing.png';
+            link.click();
+        });
+
+        undoButton.addEventListener('click', () => {
+            if (historyIndex > 0) {
+                historyIndex--;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        });
+
+        redoButton.addEventListener('click', () => {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        });
+
+        textButton.addEventListener('click', () => {
+            const text = prompt('Enter your text:');
+            if (text) {
+                ctx.font = `${currentSize}px Arial`;
+                ctx.fillStyle = currentColor;
+                ctx.fillText(text, lastX, lastY);
+                saveHistory();
+            }
+        });
+
+        colorPicker.addEventListener('change', (e) => {
+            currentColor = e.target.value;
+        });
+
+        bgColorPicker.addEventListener('change', (e) => {
+            canvas.style.backgroundColor = e.target.value;
+        });
+
+        brushSize.addEventListener('input', (e) => {
+            currentSize = e.target.value;
+        });
+
+        shapeSelector.addEventListener('change', () => {
+            currentShape = shapeSelector.value;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>图片放大</title>
+
+    </head>
+
+    <body>
+        <div>
+            <img class="dialog" src="https://wangguanjingji.oss-cn-beijing.aliyuncs.com/picture/1664334902414.png">
+            
+            <div id="dialog_large_image"></div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $("img.dialog").click(function() {
+                    var large_image = '<img src= ' + $(this).attr("src") + '></img>';
+                    $('#dialog_large_image').html($(large_image).animate({ height: '50%', width: '50%' }, 500));
+                });
+            });
+        </script>
+
+
+    </body>
+
+</html>

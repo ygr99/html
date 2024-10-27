@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>日历</title>
+  <!-- 地址：https://blog.csdn.net/m0_54829352/article/details/113033903 -->
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script src="https://www.layuicdn.com/layui-v2.5.7/layui.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui-v2.5.7/css/layui.css">
+</head>
+<body>
+	
+	<div id="laydateDemo"></div>
+	
+<script>
+ 
+	layui.use(['laydate'], function(){
+	var laydate = layui.laydate //日期
+  
+	//将日期直接嵌套在指定容器中
+	var dateIns = laydate.render({
+		elem: '#laydateDemo'
+		,position: 'static'
+		,calendar: false //是否开启公历重要节日
+		,mark: { //标记重要日子
+			'0-7-26': '生日'
+			,'2022-10-24': '小年干法阿嘎嘎嘎嘎嘎嘎'
+			,'2020-01-24': '除夕'
+			,'2020-01-25': '春节'
+			,'2020-02-01': '上班'
+    }
+  });
+});
+</script>
+</body>
+</html>  

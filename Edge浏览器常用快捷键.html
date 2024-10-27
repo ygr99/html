@@ -1,0 +1,1076 @@
+<!-- Page saved with SingleFile 
+url: https://getquicker.net/guides/Guide?id=9260b229-c617-42f5-378b-08da75b5e519&step=6facab01-44c2-4246-a420-08da7756e1a7&popup=true 
+saved date: Tue Jun 25 2024 08:37:16 GMT+0800 (中国标准时间) -->
+
+<!DOCTYPE html>
+<html lang=zh-CN style=height:100%>
+
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<title>Edge浏览器常用快捷键 - 入门向导</title>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=description content="Quicker，Windows效率工具。快速触发 + 自动化。">
+<meta name=keywords content=Windows效率工具,快捷面板,界面操作自动化,模拟按键,Quicker,鼠标手势,轮盘菜单，组合动作,热盒菜单,饼菜单,软件,轻量RPA工具>
+<style>
+    /*!
+ * Bootstrap v4.6.0 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+    :root {
+        --blue: #007bff;
+        --indigo: #6610f2;
+        --purple: #6f42c1;
+        --pink: #e83e8c;
+        --red: #dc3545;
+        --orange: #fd7e14;
+        --yellow: #ffc107;
+        --green: #28a745;
+        --teal: #20c997;
+        --cyan: #17a2b8;
+        --white: #fff;
+        --gray: #6c757d;
+        --gray-dark: #343a40;
+        --primary: #007bff;
+        --secondary: #6c757d;
+        --success: #28a745;
+        --info: #17a2b8;
+        --warning: #ffc107;
+        --danger: #dc3545;
+        --light: #f8f9fa;
+        --dark: #343a40;
+        --breakpoint-xs: 0;
+        --breakpoint-sm: 576px;
+        --breakpoint-md: 768px;
+        --breakpoint-lg: 992px;
+        --breakpoint-xl: 1200px;
+        --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box
+    }
+
+    html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+        background-color: #fff
+    }
+
+    body {
+        font-family: "Lato", arial, sans-serif;
+        color: #444
+    }
+
+    body {
+        padding-top: 54px
+    }
+
+    .line-nav-tabs {
+        display: flex;
+        flex-direction: row
+    }
+
+    .line-nav-tabs .nav-item .nav-link {
+        padding: 5px 15px 3px 15px;
+        border-bottom: 3px solid transparent
+    }
+
+    .line-nav-tabs .nav-item .nav-link.active {
+        border-bottom-color: #03a9f4
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #1e527f
+    }
+
+    a:focus {
+        text-decoration: none;
+        color: #1e527f
+    }
+
+    ::-webkit-input-placeholder {
+        color: #999;
+        text-transform: uppercase
+    }
+
+    @media (max-width:767px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    h2 {
+        margin-top: 0
+    }
+
+    p {
+        margin-top: 0
+    }
+
+    a {
+        text-decoration: none;
+        background-color: transparent
+    }
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline
+    }
+
+    a:not([href]):not([class]) {
+        color: inherit;
+        text-decoration: none
+    }
+
+    a:not([href]):not([class]):hover {
+        color: inherit;
+        text-decoration: none
+    }
+
+    kbd {
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    }
+
+    table {
+        border-collapse: collapse
+    }
+
+    th {
+        text-align: inherit;
+        text-align: -webkit-match-parent
+    }
+
+    button {
+        border-radius: 0
+    }
+
+    button:focus:not(:focus-visible) {
+        outline: 0
+    }
+
+    button {
+        margin: 0;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit
+    }
+
+    button {
+        overflow: visible
+    }
+
+    button {
+        text-transform: none
+    }
+
+    button {
+        -webkit-appearance: button
+    }
+
+    [type=button]:not(:disabled),
+    [type=reset]:not(:disabled),
+    [type=submit]:not(:disabled),
+    button:not(:disabled) {
+        cursor: pointer
+    }
+
+    ::-webkit-file-upload-button {
+        font: inherit;
+        -webkit-appearance: button
+    }
+
+    .h6,
+    h2 {
+        margin-bottom: .5rem;
+        font-weight: 500;
+        line-height: 1.2
+    }
+
+    .h6 {
+        font-size: 1rem
+    }
+
+    kbd {
+        padding: .2rem .4rem;
+        font-size: 87.5%;
+        color: #fff;
+        background-color: #212529;
+        border-radius: .2rem
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+
+    @media (min-width:576px) {
+        .container {
+            max-width: 540px
+        }
+    }
+
+    @media (min-width:768px) {
+        .container {
+            max-width: 720px
+        }
+    }
+
+    @media (min-width:992px) {
+        .container {
+            max-width: 960px
+        }
+    }
+
+    @media (min-width:1200px) {
+        .container {
+            max-width: 1140px
+        }
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    .table {
+        margin-bottom: 1rem;
+        color: #212529
+    }
+
+    .table td,
+    .table th {
+        vertical-align: top;
+        border-top: 1px solid #dee2e6
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6
+    }
+
+    .table-sm td,
+    .table-sm th {
+        padding: .3rem
+    }
+
+    @media (max-width:575.98px) {}
+
+    @media (max-width:767.98px) {}
+
+    @media (max-width:991.98px) {}
+
+    @media (max-width:1199.98px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (min-width:576px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    .fade {
+        transition: opacity .15s linear
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+        .fade {
+            transition: none
+        }
+    }
+
+    .fade:not(.show) {
+        opacity: 0
+    }
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    .nav-link {
+        display: block
+    }
+
+    .nav-link:focus,
+    .nav-link:hover {
+        text-decoration: none
+    }
+
+    @media (max-width:575.98px) {}
+
+    @media (min-width:576px) {}
+
+    @media (max-width:767.98px) {}
+
+    @media (min-width:768px) {}
+
+    @media (max-width:991.98px) {}
+
+    @media (min-width:992px) {}
+
+    @media (max-width:1199.98px) {}
+
+    @media (min-width:1200px) {}
+
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem
+    }
+
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1.25rem
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:576px) {}
+
+    @media (min-width:576px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (min-width:576px) {}
+
+    .alert {
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem
+    }
+
+    .alert-dismissible {
+        padding-right: 4rem
+    }
+
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb
+    }
+
+    @-webkit-keyframes progress-bar-stripes {
+        from {
+            background-position: 1rem 0
+        }
+
+        to {
+            background-position: 0 0
+        }
+    }
+
+    @keyframes progress-bar-stripes {
+        from {
+            background-position: 1rem 0
+        }
+
+        to {
+            background-position: 0 0
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (min-width:576px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    @-webkit-keyframes spinner-border {
+        to {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+        }
+    }
+
+    @keyframes spinner-border {
+        to {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg)
+        }
+    }
+
+    @-webkit-keyframes spinner-grow {
+        0% {
+            -webkit-transform: scale(0);
+            transform: scale(0)
+        }
+
+        50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none
+        }
+    }
+
+    @keyframes spinner-grow {
+        0% {
+            -webkit-transform: scale(0);
+            transform: scale(0)
+        }
+
+        50% {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none
+        }
+    }
+
+    @media (prefers-reduced-motion:reduce) {}
+
+    .bg-success {
+        background-color: #28a745 !important
+    }
+
+    .bg-info {
+        background-color: #17a2b8 !important
+    }
+
+    .bg-danger {
+        background-color: #dc3545 !important
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #dee2e6 !important
+    }
+
+    .rounded {
+        border-radius: .25rem !important
+    }
+
+    .d-flex {
+        display: -ms-flexbox !important;
+        display: flex !important
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    .justify-content-start {
+        -ms-flex-pack: start !important;
+        justify-content: flex-start !important
+    }
+
+    .justify-content-between {
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important
+    }
+
+    .align-items-center {
+        -ms-flex-align: center !important;
+        align-items: center !important
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    @supports ((position:-webkit-sticky) or (position:sticky)) {
+        .sticky-top {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 1020
+        }
+    }
+
+    .shadow {
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important
+    }
+
+    .shadow-lg {
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important
+    }
+
+    .mt-3 {
+        margin-top: 1rem !important
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem !important
+    }
+
+    .mb-5 {
+        margin-bottom: 3rem !important
+    }
+
+    .p-3 {
+        padding: 1rem !important
+    }
+
+    .pl-3 {
+        padding-left: 1rem !important
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    .text-center {
+        text-align: center !important
+    }
+
+    @media (min-width:576px) {}
+
+    @media (min-width:768px) {}
+
+    @media (min-width:992px) {}
+
+    @media (min-width:1200px) {}
+
+    .font-weight-bold {
+        font-weight: 700 !important
+    }
+
+    .text-secondary {
+        color: #6c757d !important
+    }
+
+    .text-dark {
+        color: #343a40 !important
+    }
+
+    a.text-dark:focus,
+    a.text-dark:hover {
+        color: #121416 !important
+    }
+
+    .text-black-50 {
+        color: rgba(0, 0, 0, .5) !important
+    }
+</style>
+<style>
+    /*!
+ * Font Awesome Pro 5.13.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license (Commercial License)
+ */
+    .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1
+    }
+
+    .fa-1x {
+        font-size: 1em
+    }
+
+    @-webkit-keyframes fa-spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg)
+        }
+
+        to {
+            -webkit-transform: rotate(1turn);
+            transform: rotate(1turn)
+        }
+    }
+
+    @keyframes fa-spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg)
+        }
+
+        to {
+            -webkit-transform: rotate(1turn);
+            transform: rotate(1turn)
+        }
+    }
+
+    .fa-arrow-alt-to-top:before {
+        content: ""
+    }
+
+    .fa-book-open:before {
+        content: ""
+    }
+
+    .fa-home:before {
+        content: ""
+    }
+
+
+    .fas {
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 900
+    }
+</style>
+<!-- <style>
+    @-moz-document url-prefix() {
+        .note-modal .note-image-input {
+            height: auto
+        }
+    }
+</style> -->
+
+<style>
+    html,
+    body {
+        padding: 0;
+        overflow: hidden;
+        height: 100vh
+    }
+
+    #wrapper {
+        overflow-x: hidden;
+        height: 100vh
+    }
+
+    #page-content-wrapper {
+        width: 100vw;
+        height: 100vh
+    }
+
+    @media (min-width:768px) {
+        #page-content-wrapper {
+            min-width: 0;
+            width: 100%
+        }
+    }
+
+    #bottom-nav {
+        border-top: 1px solid #E0E0E0;
+        background-color: #F9F9F9;
+        padding: 0 15px;
+        height: 50px
+    }
+
+    #main {
+        padding-bottom: 10px;
+        overflow: auto;
+        font-size: 14px;
+        height: calc(100vh - 50px)
+    }
+
+    .step-header {
+        padding: 10px
+    }
+
+    .step-title {
+        font-size: 16px
+    }
+
+    .step-content {
+        padding: 15px;
+        overflow: auto
+    }
+
+    h2 {
+        font-weight: bold
+    }
+
+    ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.01)
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.1)
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #888
+    }
+
+    .top-btn {
+        all: unset;
+        position: fixed;
+        right: 20px;
+        bottom: 70px;
+        cursor: pointer;
+        transform: scale(1.8);
+        opacity: 0;
+        transition: .3s;
+        z-index: 10000
+    }
+</style>
+<meta name=referrer content=no-referrer>
+
+<link rel=canonical
+    href="https://getquicker.net/guides/Guide?id=9260b229-c617-42f5-378b-08da75b5e519&amp;step=6facab01-44c2-4246-a420-08da7756e1a7&amp;popup=true">
+<meta http-equiv=content-security-policy
+    content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
+<style>
+    img[src="data:,"],
+    source[src="data:,"] {
+        display: none !important
+    }
+</style>
+</head>
+
+<body>
+
+    <style class=sf-hidden>
+        .i {
+            display: inline-block
+        }
+    </style>
+    <style class=sf-hidden>
+        ::selection {
+            background-color: #FE4F70;
+            color: white
+        }
+    </style>
+    <div class=d-flex id=wrapper>
+
+        <div id=page-content-wrapper>
+            <div id=main>
+                <div class=main-content>
+                    <div class=step-header>
+                        <div class="step-title text-secondary font-weight-bold">
+                        </div>
+                    </div>
+
+                    <div class=step-content>
+                        <center>
+                            <div class="text-center i animate__animated animate__flipInX">
+                                <h2 style=font-size:50px>Edge浏览器常用快捷键</h2>
+                            </div>
+                        </center>
+                        <div class="shadow-lg p-3 mb-5 bg-body rounded container">
+                            <!-- <div class="line-nav-tabs mt-3 mb-3 justify-content-start border-bottom pl-3"
+                                style=margin-left:-15px;margin-right:-15px>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e"><i
+                                            class="fas fa-home"></i> 首页</a></div>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=ecf92020-153a-4373-a403-08da7756e1a7"><i
+                                            class="fas fa-book-open"></i> 民间知识库</a></div>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=f673fc76-0674-4a60-a407-08da7756e1a7"><i
+                                            class="fas fa-book-open"></i> 入门手册</a></div>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=30b632d0-216f-4a95-a404-08da7756e1a7"><i
+                                            class="fas fa-book-open"></i> 实用技巧</a></div>
+                                <div class=nav-item><a class="nav-link text-dark active"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=859eccee-32a9-4b95-a408-08da7756e1a7"><i
+                                            class="fas fa-book-open"></i> 精选文档</a></div>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=463a2997-c15d-4803-fe05-08da7df7380a"><i
+                                            class="fas fa-book-open"></i> 问题自助</a></div>
+                                <div class=nav-item><a class="nav-link text-dark"
+                                        href="https://getquicker.net/Guides/Guide?id=52593d69-c99a-4367-8b98-08d9a65be47e&amp;step=dcbbd758-e358-411c-8ac1-08daa9328ff4"><i
+                                            class="fas fa-book-open"></i> 其他文档</a></div>
+                            </div> -->
+
+
+
+                            <div class="card text-auto">
+                                <div class=card-body>
+                                    <p class=h6>原文：<a
+                                            href="https://getquicker.net/guides/Guide?id=9260b229-c617-42f5-378b-08da75b5e519&step=6facab01-44c2-4246-a420-08da7756e1a7&popup=true#main"
+                                            target="_blank">
+                                            Edge浏览器常用快捷键 -入门向导</a>
+                                    </p>
+                                    <!-- <p class=h6>方便在设置手势，或者创建基础动作的时候，不用花费太多时间去百度；</p>
+                                    <p class=h6>水平有限，数量不多，仅供参考；</p> -->
+                                    <div class="card text-auto">
+                                        <div class=card-body>
+                                            <table class="table table-sm" style=width:100%>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope=col>功能</th>
+                                                        <th scope=col>快捷键</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr>
+                                                        <td>新建标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>T</kbd></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>关闭标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>W</kbd></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>静音当前标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>M</kbd></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>打开一个新窗口</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>N</kbd></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>关闭当前窗口</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd class=bg-info>F4</kbd>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开新的 InPrivate 窗口</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>N</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>显示或隐藏收藏夹栏</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>B</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>将焦点放在收藏夹栏中的第一项上</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>B</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>将当前选项卡另存为收藏夹</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>D</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>在新文件夹中将所有打开的标签页另存为收藏夹</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>D</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>激活地址栏中的 URL </td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd class=bg-info>D</kbd>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开 “设置及更多...” 菜单</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd class=bg-info>E 或
+                                                                F</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>在页面上查找</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>F</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开历史记录</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>H</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开收藏夹管理</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>O</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打印当前页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>P</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开新标签页并切换到该标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>T</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>将焦点放在工具栏中的第一项上</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd
+                                                                class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>T</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>查看源</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>U</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>开始或停止“大声朗读”</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>U</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>不带格式粘贴</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>V</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>关闭当前窗口</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>W</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>打开Edge集锦</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>Y</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>放大</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>加号&nbsp;(+)</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>缩小</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>减号&nbsp;(-)</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>重置缩放级别</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>0（零）</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>切换到特定标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>1、2、3 … 8</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>切换到最后一个标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>9</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>切换到下一个标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-info>Tab</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>切换到上一个标签页</td>
+                                                        <td><kbd>Ctrl</kbd> + <kbd class=bg-success>Shift</kbd> + <kbd
+                                                                class=bg-info>Tab</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>返回</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd class=bg-info>向 ←
+                                                                左键</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>前进</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd class=bg-info>向 →
+                                                                右键</kbd></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>在当前标签页中打开主页</td>
+                                                        <td><kbd class=bg-danger>Alt</kbd> + <kbd
+                                                                class=bg-info>Home</kbd></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id=bottom-nav class="d-flex justify-content-between align-items-center">
+            </div>
+
+        </div>
+    </div>

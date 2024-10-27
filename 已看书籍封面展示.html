@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>已看书籍封面展示</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+      }
+      .book-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .date-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .date-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .book-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 200px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .book-card:hover {
+        transform: scale(1.05);
+      }
+      .book-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .book-info {
+        padding: 10px;
+        text-align: center;
+      }
+      .book-info h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+      }
+      .book-info p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        color: #666;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 80%;
+        text-align: center;
+      }
+      .modal-content img {
+        max-width: 100%;
+        height: auto;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="book-container">
+      <!-- 书籍封面展示区域 -->
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modal-image" src="" alt="书籍封面" />
+        <h3 id="modal-title"></h3>
+        <p id="modal-date"></p>
+      </div>
+    </div>
+
+    <script>
+      // JSON数据
+      const books = [
+        {
+          name: "封神天兵：从掠夺词条开始崛起",
+          pictureUrl: "http://img.faloo.com/Novel/498x705/1/1377/001377216.jpg",
+          date: "2024年9月28日 周六39周",
+        },
+
+        // 可以继续添加更多书籍
+      ];
+
+      // 将中文日期字符串转换为可排序的日期字符串
+      function convertToSortableDate(dateStr) {
+        const [year, month, day, weekDay, week] = dateStr.match(/\d+/g);
+        return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+      }
+
+      // 按日期分组并按日期倒序排列
+      function groupBooksByDate(books) {
+        const groupedBooks = books.reduce((acc, book) => {
+          const sortableDate = convertToSortableDate(book.date);
+          if (!acc[sortableDate]) {
+            acc[sortableDate] = {
+              originalDate: book.date,
+              books: [],
+            };
+          }
+          acc[sortableDate].books.push(book);
+          return acc;
+        }, {});
+
+        // 将日期键按倒序排列
+        const sortedDates = Object.keys(groupedBooks).sort(
+          (a, b) => new Date(b) - new Date(a)
+        );
+        return sortedDates.reduce((acc, key) => {
+          acc[key] = groupedBooks[key];
+          return acc;
+        }, {});
+      }
+
+      // 生成书籍封面卡片
+      function createBookCard(book) {
+        const bookCard = document.createElement("div");
+        bookCard.className = "book-card";
+        bookCard.addEventListener("click", () => showModal(book));
+
+        const bookImage = document.createElement("img");
+        bookImage.src = book.pictureUrl;
+        bookImage.alt = book.name;
+
+        const bookInfo = document.createElement("div");
+        bookInfo.className = "book-info";
+
+        const bookTitle = document.createElement("h3");
+        bookTitle.textContent = book.name;
+
+        bookInfo.appendChild(bookTitle);
+
+        bookCard.appendChild(bookImage);
+        bookCard.appendChild(bookInfo);
+
+        return bookCard;
+      }
+
+      // 显示模态框
+      function showModal(book) {
+        const modal = document.getElementById("modal");
+        const modalImage = document.getElementById("modal-image");
+        const modalTitle = document.getElementById("modal-title");
+        const modalDate = document.getElementById("modal-date");
+
+        modalImage.src = book.pictureUrl;
+        modalTitle.textContent = book.name;
+        modalDate.textContent = book.date;
+
+        modal.style.display = "flex";
+      }
+
+      // 关闭模态框
+      function closeModal() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+      }
+
+      // 初始化页面
+      function init() {
+        const bookContainer = document.querySelector(".book-container");
+        const groupedBooks = groupBooksByDate(books);
+
+        for (const date in groupedBooks) {
+          const dateSection = document.createElement("div");
+          dateSection.className = "date-section";
+
+          const dateTitle = document.createElement("div");
+          dateTitle.className = "date-title";
+          dateTitle.textContent = groupedBooks[date].originalDate;
+
+          dateSection.appendChild(dateTitle);
+
+          groupedBooks[date].books.forEach((book) => {
+            const bookCard = createBookCard(book);
+            dateSection.appendChild(bookCard);
+          });
+
+          bookContainer.appendChild(dateSection);
+        }
+
+        // 关闭模态框的事件监听
+        const closeBtn = document.querySelector(".close");
+        closeBtn.addEventListener("click", closeModal);
+      }
+
+      // 页面加载完成后初始化
+      window.onload = init;
+    </script>
+  </body>
+</html>

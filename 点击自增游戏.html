@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击游戏</title>
+</head>
+
+<body>
+    <h1>点击游戏</h1>
+    <p>您的分数：<span id="score">0</span></p>
+    <button id="clickButton">点击这里</button>
+
+    <script>
+        // 获取页面元素
+        const scoreElement = document.getElementById('score');
+        const clickButton = document.getElementById('clickButton');
+
+        // 初始化分数
+        let score = 0;
+
+        // 点击按钮时增加分数
+        clickButton.addEventListener('click', function () {
+            score++;
+            scoreElement.textContent = score;
+        });
+    </script>
+</body>
+
+</html>

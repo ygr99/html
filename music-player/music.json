@@ -1,0 +1,24 @@
+[
+
+{
+  "src": "./music/裤裤超酷-唱歌-选择性回避.mp3",
+  "title": "选择性回避",
+  "auther": "裤裤超酷",
+  "img": "./images/1.jpg"
+}
+,
+{
+  "src": "./music/盛夏的果实.mp3",
+  "title": "盛夏的果实",
+  "auther": "大喵",
+  "img": "./images/大喵.jpg"
+}
+,
+{
+  "src": "./music/突然好想你.mp3",
+  "title": "突然好想你",
+  "auther": "组长",
+  "img": "./images/组长.jpg"
+}
+
+]

@@ -1,0 +1,64 @@
+body {
+    background: var(--body-bg-color);
+    box-sizing: border-box;
+    color: var(--text-color);
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 2;
+    min-height: 100%;
+    position: relative;
+    transition: padding 0.2s ease-in-out;
+    background: rgb(201, 200, 183)url("https://wangguanjingji.oss-cn-beijing.aliyuncs.com/picture/%E4%BF%AE%E5%8F%AF%E7%88%B1%E8%83%8C%E6%99%AF.jpg") ;
+}
+/* @media screen and (max-width: 300px) {
+    .shoujibengji {
+      background: salmon;
+      background: rgb(201, 200, 183)url("");
+    }
+  } */
+
+.post-header {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.htmleaf-demo {
+    width: 100%;
+    text-align: center;
+}
+
+.htmleaf-demo a {
+    color: #fff;
+    background: #444;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.2em 1em;
+    margin-bottom: 10px ;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    font-weight: 200;
+    width: 110px;
+    width: 180px;
+}
+
+.htmleaf-demo a:hover {
+    opacity: 0.8;
+}
+
+a {
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #aaa;
+    word-wrap: break-word;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

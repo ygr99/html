@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>99-网页记事本</title>
+    <style>
+        body {
+            background-color: #ededed;
+            font-family: "Kaishu", serif
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        textarea {
+            border: 2px solid #c9c9c9;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body onload="loadNote()">
+    <h1>99-网页记事本</h1>
+    <div>
+        <form>
+            <textarea onkeyup="saveNote()"></textarea>
+        </form>
+    </div>
+</body>
+
+<script>
+    // Save note to localstorage
+    function saveNote() {
+        // Get note text
+        let note = document.querySelector(`textarea`).value;
+        localStorage.setItem('note', note);
+    }
+
+    // Load note from localstorage
+    function loadNote() {
+        let savedNote = localStorage.getItem('note');
+        if (savedNote) {
+            document.querySelector(`textarea`).value = savedNote;
+        }
+    }
+
+    loadNote();
+</script>
+
+</html>

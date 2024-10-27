@@ -1,0 +1,42 @@
+body {
+    font-family: sans-serif,Verdana;
+    /* line-height: 2; */
+    background: url("https://wangguanjingji.oss-cn-beijing.aliyuncs.com/picture/%E7%8C%AB%E6%9F%9A%E6%B1%81%E6%B1%81.jpg") no-repeat;
+}
+/* @media screen and (max-width: 300px) {
+    .shoujibengji {
+      background: salmon;
+      background: rgb(201, 200, 183)url("");
+    }
+  } */
+
+.post-header {
+    color: #fff;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.content {
+    /* width: 100%; */
+    text-align: center;
+}
+
+
+.content a {
+    font-size: 6px;
+    color: #fff;
+    background-color: #67b3e7 !important;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.2em 1em;
+    margin-bottom: 10px ;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    width: 160px;
+}
+
+
+
+

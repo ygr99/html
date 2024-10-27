@@ -1,0 +1,246 @@
+.htmleaf-header {
+    padding: 2em 190px 1em;
+    text-align: center;
+}
+
+.htmleaf-demo {
+    width: 100%;
+}
+
+.htmleaf-demo a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.6em 1em;
+    border: 1px solid #fff;
+    border-radius: 12px;
+    font-weight: 200;
+}
+
+.htmleaf-demo a:hover {
+    opacity: 0.6;
+}
+
+.htmleaf-demo a.current {
+    background: #1d7db1;
+    color: #fff;
+}
+
+.htmleaf-container {
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+		margin-top: 10px;
+}
+
+.col-md-3 {
+    position: relative;
+    float: left;
+}
+.col-md-3 a,
+.col-md-3 a img{
+  display: block;
+}
+.col-md-3 a{
+	width: auto;
+	height: auto;
+	position: relative;
+	background: #f1d2c2;
+	-webkit-box-shadow: 0px 0px 1px #fff, 0px 0px 1px rgba(158,111,86,0.3) inset;
+	-moz-box-shadow: 0px 0px 1px #fff, 0px 0px 1px rgba(158,111,86,0.3) inset;
+	box-shadow: 0px 0px 1px #fff, 0px 0px 1px rgba(158,111,86,0.3) inset;
+}
+.col-md-3 a span{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+	color: rgba(11,11,11,0.8);
+	text-shadow: 0px 1px 1px rgba(11,11,11,0.1);
+	font-size: 24px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	background: rgb(200,200,200);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(200,200,200,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.56)), color-stop(100%,rgba(200,200,200,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(200,200,200,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(200,200,200,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(200,200,200,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(200,200,200,1) 100%);
+	-webkit-transition: opacity 0.3s linear;
+	-moz-transition: opacity 0.3s linear;
+	-o-transition: opacity 0.3s linear;
+	-ms-transition: opacity 0.3s linear;
+	transition: opacity 0.3s linear;
+}
+.col-md-3 a:hover span{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+.col-md-3-overlay{
+	width: 0px;
+	height: 0px;
+	position: fixed;
+	overflow: hidden;
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	z-index: 99;
+	text-align: center;
+	background: rgb(72,77,80);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%, rgba(72,77,80,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.56)), color-stop(100%,rgba(72,77,80,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(72,77,80,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(72,77,80,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(72,77,80,1) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.56) 0%,rgba(72,77,80,1) 100%);
+  cursor: help;
+}
+.col-md-3-overlay a {
+  text-decoration: none;
+}
+.col-md-3-overlay a.col-md-3-close{
+	background: rgb(27, 27, 27);
+	z-index: 1001;
+	color: #fff;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-size: 15px;
+  font-weight: 300;
+	line-height: 32px;
+	text-align: center;
+	width: 65px;
+	height: 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+	overflow: hidden;
+	margin-left: -25px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-webkit-transition: opacity 0.3s linear 1.2s;
+	-moz-transition: opacity 0.3s linear 1.2s;
+	-o-transition: opacity 0.3s linear 1.2s;
+	-ms-transition: opacity 0.3s linear 1.2s;
+	transition: opacity 0.3s linear 1.2s;
+}
+.col-md-3-overlay span.col-md-3-info{
+	background: rgb(27, 27, 27);
+	z-index: 1001;
+	color: #fff;
+	position: absolute;
+	top: 30px;
+	left: 30%;
+	font-size: 15px;
+  font-weight: 300;
+	line-height: 32px;
+	text-align: center;
+	width: 660px;
+	height: 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+	overflow: hidden;
+	margin-left: -25px;
+	opacity: 0;
+	filter: alpha(opacity=0); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=0)"; /*IE8*/
+	-webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	-webkit-transition: opacity 0.3s linear 1.2s;
+	-moz-transition: opacity 0.3s linear 1.2s;
+	-o-transition: opacity 0.3s linear 1.2s;
+	-ms-transition: opacity 0.3s linear 1.2s;
+	transition: opacity 0.3s linear 1.2s;
+}
+.col-md-3-overlay img{
+	/* height: 100%; For Opera max-height does not seem to work */
+	max-height: 100%;
+	position: relative;
+	-webkit-box-shadow: 10px 10px 20px rgba(0,0,0,0.9);
+	-moz-box-shadow: 10px 10px 20px rgba(0,0,0,0.9);
+	box-shadow: 10px 10px 20px rgba(0,0,0,0.9);
+}
+.col-md-3-overlay:target {
+  width: auto;
+	height: auto;
+	bottom: 0px;
+	right: 0px;
+}
+.col-md-3-overlay:target img {
+	-webkit-animation: scaleDown 1.2s ease-in-out;
+	-moz-animation: scaleDown 1.2s ease-in-out;
+	-o-animation: scaleDown 1.2s ease-in-out;
+	-ms-animation: scaleDown 1.2s ease-in-out;
+	animation: scaleDown 1.2s ease-in-out;
+}
+.col-md-3-overlay:target a.col-md-3-close,
+.col-md-3-overlay:target span.col-md-3-info,
+.col-md-3-overlay:target > div{
+	opacity: 1;
+	filter: alpha(opacity=99); /* internet explorer */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(opacity=99)"; /*IE8*/
+}
+@-webkit-keyframes scaleDown {
+  0% { -webkit-transform: scale(10,10); opacity: 0; }
+  100% { -webkit-transform: scale(1,1); opacity: 1; }
+}
+@-moz-keyframes scaleDown {
+  0% { -moz-transform: scale(10,10); opacity: 0; }
+  100% { -moz-transform: scale(1,1); opacity: 1; }
+}
+@-o-keyframes scaleDown {
+  0% { -o-transform: scale(10,10); opacity: 0; }
+  100% { -o-transform: scale(1,1); opacity: 1; }
+}
+@-ms-keyframes scaleDown {
+  0% { -ms-transform: scale(10,10); opacity: 0; }
+  100% { -ms-transform: scale(1,1); opacity: 1; }
+}
+@keyframes scaleDown {
+  0% { transform: scale(10,10); opacity: 0; }
+  100% { transform: scale(1,1); opacity: 1; }
+}
+x:-o-prefocus, .col-md-3-overlay img {
+    height: 100%;
+}
+
+
+
+
+
+/*================================================================================================*/
+@media screen and (max-width: 50em) {
+    .htmleaf-header {
+        padding: 3em 10% 4em;
+    }
+    .htmleaf-header h1 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .htmleaf-header h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 30em) {
+    .htmleaf-header h1 {
+        font-size: 1.2em;
+    }
+}

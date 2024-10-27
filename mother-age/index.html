@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>妈妈</title>
+  <script>
+    // 定义保存数据的函数
+    function saveData() {
+      var birth = document.getElementById('birthday').value; // 获取生日输入框中的值
+      var age = document.getElementById('age').textContent; // 获取年龄信息的文本内容
+
+      localStorage.setItem('mom-birthday', birth); // 存储生日到本地存储中
+      localStorage.setItem('mom-age', age); // 存储年龄信息到本地存储中
+    }
+
+    function updateClock() {
+      var now = new Date();
+      var date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+      var time = now.toLocaleTimeString();
+      var weekOfYear = getWeek(now);
+      var birth = new Date(localStorage.getItem('mom-birthday')); // 从本地存储中读取生日，并转换成Date对象
+
+      document.getElementById('date').textContent = date + '第' + weekOfYear + '周';
+      document.getElementById('time').textContent = time;
+      document.getElementById('age').textContent = '今年妈妈 ' + getAge(birth, now) + ' 岁了！'; // 计算年龄并显示在页面上
+    }
+
+    function getWeek(date) {
+      const onejan = new Date(date.getFullYear(), 0, 1);
+      const dayOfYear = Math.ceil((date - onejan) / (1000 * 60 * 60 * 24));
+      const firstDayOfWeek = onejan.getDay() || 7;
+      const weekNumber = Math.ceil((dayOfYear + firstDayOfWeek - 1) / 7);
+
+      return weekNumber;
+    }
+
+    function getAge(birth, now) {
+      var diff = Math.floor(now.getTime() - birth.getTime()); // 计算毫秒差值
+      var year = diff / (1000 * 60 * 60 * 24 * 365.25); // 计算年数
+      return Math.floor(year); // 取整并返回
+    }
+
+    setInterval(updateClock, 1000);
+  </script>
+</head>
+
+<body>
+  <h1>妈妈</h1>
+  <span id="age"></span> <!-- 显示今天是妈妈几岁生日 -->
+  <label for="birthday">妈妈：</label><input type="date" id="birthday">
+  <!-- 添加保存按钮 -->
+  <button onclick="saveData()">保存</button>
+  <p>妈妈，您辛苦了！感谢您为我们的家庭做出的一切！</p>
+  <div>
+    <small id="date"></small>
+    <!-- <br> -->
+    <small id="time"></small>
+    <br>
+  </div>
+
+
+
+
+
+  <script>
+    // 页面加载时从本地存储中读取数据并更新显示
+    var savedBirthday = localStorage.getItem('mom-birthday');
+    var savedAge = localStorage.getItem('mom-age');
+    if (savedBirthday) {
+      document.getElementById('birthday').value = savedBirthday;
+    }
+    if (savedAge) {
+      document.getElementById('age').textContent = savedAge;
+    }
+  </script>
+</body>
+
+</html>

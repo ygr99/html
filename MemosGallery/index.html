@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./public/css/index.css" />
+    <link rel="shortcut icon" href="./public/gallery.svg" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+    <!-- <script src="./public/js/data.js"></script> -->
+    <script src="./public/js/memos.js"></script>
+    <link rel="stylesheet" href="./public/css/photo.css">
+    <script src="./public/js/imgStatus.min.js"></script>
+    <script src="./public/js/lately.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css" media="print" onload="this.media='all'">
+    <title>Gallery</title>
+  </head>
+
+  <body>
+    <h1 class="gallery">Memos Gallery</h1>
+    <div class="bg">
+      <div class="text">
+        <p>Scroll Down</p>
+        <br />
+        <p>Open Album</p>
+        <br>
+        <p class="down">⬇️</p>
+        <div class="arrow"></div>
+      </div>
+    </div>
+    <div id="container" class="gallery-photos page">
+      <img class= "loadImg" src="./public/load.svg" alt="">
+    </div>
+    <div id="back-to-top" class="btn-back-to-top">
+      <i class="fa fa-angle-up"></i>
+  </div>
+    <footer class="markdown-body footer blur">
+      <p>Copyright @
+          <script>
+              document.write(new Date().getFullYear())
+          </script><a href="https://i.yct.ee/" target="_blank" rel="noopener noreferrer" class="hidden">Barry</a> All Rights Reserved.
+      </p>
+      
+  </footer>
+  </body>
+</html>

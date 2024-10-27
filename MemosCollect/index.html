@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>MemosCollect</title>
+
+  <style>
+    body {
+      color: #6a6c6f;
+      background-color: #f1f3f6;
+      max-width: 960px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+
+    .memo-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      cursor: pointer;
+    }
+
+    h1:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      margin-top: 24px;
+      cursor: pointer;
+      /* 鼠标指针变为手型 */
+    }
+
+
+    h2:hover {
+      text-decoration: underline;
+      /* 鼠标移过显示下划线 */
+    }
+
+    .collapse {
+      display: none;
+    }
+
+    li {
+      margin-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e3ed;
+    }
+
+    .memo-list {
+      background-color: #fff;
+      padding: 3px;
+      margin-bottom: 15px;
+      /* 还可以加入其他的属性 */
+      border: 1px solid #e0e3ed;
+      box-shadow: 0 5px 10px rgb(189 189 189 / 10%);
+      transition: all .3s ease-in-out;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="text-align: center;">MemosCollect</h1>
+  <div id="memoContainer"></div>
+
+
+  <script>
+
+
+function replaceLinks(text) {
+  // 替换链接
+  return text.replace(/https?:\/\/[^\s]+/g, function (match) {
+    return '<a href="' + match + '" target="_blank">' + match + '</a>';
+  });
+}
+
+fetch('http://111.229.103.146:5230/api/v1/memo?creatorId=1&tag=MemosCollect', {
+  method: 'GET',
+  mode: 'cors', // 指示浏览器使用 CORS 发送请求
+})
+  .then(response => response.json())
+  .then(data => {
+
+    const memoList = data;
+
+    const memoMap = new Map(); // Map 用于存储不同日期中对应的Memo
+    memoList.forEach(memo => {
+      const date = new Date(memo.createdTs * 1000); // 将秒数转换为毫秒数
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1; // 注意：getMonth返回的是0-11，所以需要加1
+      const day = date.getDate();
+
+      const weekDay = ["七", "一", "二", "三", "四", "五", "六"];
+      const dayOfWeek = weekDay[date.getDay()];
+
+
+      const dayOfYear = Math.ceil((date - new Date(year, 0, 1)) / (1000 * 60 * 60 * 24)); // 获取今年第几天
+      const firstDayOfWeek = new Date(year, 0, 1).getDay() || 7; // 获取今年第一天是周几
+      const weekNumber = Math.ceil((dayOfYear + firstDayOfWeek - 1) / 7); // 获取本年度第几周
+
+
+
+      // 格式化日期字符串
+      const dateString = `${year}年${month}月${day}日周${dayOfWeek}${weekNumber}周`;
+
+
+      let content = memo.content.replace('#MemosCollect \n', ''); // 删除"MemosCollect"字样和换行
+      content = content.trim(); // 去除首尾空格
+
+      const memoItem = { content: replaceLinks(content).replace(/\n/g, '<br>') }; // 替换链接并且转化换行
+      if (memoMap.has(dateString)) {
+        memoMap.get(dateString).push(memoItem); // 如果此日期已经存在，则添加到对应日期下
+      } else {
+        memoMap.set(dateString, [memoItem]); // 否则创建一个新的日期并添加到对应的Memo数组中
+      }
+    });
+
+    // 将Map中的数据展示在页面上
+    const memoContainer = document.getElementById('memoContainer');
+    for (const [dateString, memoList] of memoMap) {
+      const dateHeader = document.createElement('h2');
+      dateHeader.textContent = dateString; // 设置标题为日期字符串
+      memoContainer.appendChild(dateHeader);
+
+
+      // 添加事件监听到标题
+      dateHeader.addEventListener('click', () => {
+        // 查找对应标题的memoListContainer
+        const memoListContainer = dateHeader.nextElementSibling;
+        // 切换展开和收起
+        memoListContainer.classList.toggle('collapse');
+      });
+
+      const memoListContainer = document.createElement('ul');
+      memoListContainer.classList.add('memo-list');
+
+
+      memoList.forEach(memoItem => {
+        const memoItemContainer = document.createElement('li');
+        memoItemContainer.innerHTML = memoItem.content;
+        memoListContainer.appendChild(memoItemContainer);
+      });
+      memoContainer.appendChild(memoListContainer);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+const h1Element = document.querySelector('h1');
+h1Element.addEventListener('click', () => {
+  const h2Elements = document.querySelectorAll('h2');
+  h2Elements.forEach(h2Element => {
+    const memoListContainer = h2Element.nextElementSibling;
+    memoListContainer.classList.toggle('collapse');
+  });
+});
+
+function changeFont() {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css";
+  document.head.append(link);
+
+  // 修改全部字体
+  const elements = document.querySelectorAll('*');
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].style.fontFamily = '"LXGW WenKai Screen", sans-serif';
+  }
+}
+changeFont();
+
+
+  </script>
+</body>
+
+</html>
