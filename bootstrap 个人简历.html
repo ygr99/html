@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的个人简历</title>
+    <!-- 引入在线样式表 -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* 自定义样式 */
+      body {
+        font-family: "Arial", sans-serif;
+      }
+      .profile-header {
+        background-image: url("images/profile.png");
+        height: 300px;
+        background-size: cover;
+        color: white;
+        text-align: right;
+        margin-bottom: 30px;
+        padding-top: 100px;
+      }
+      .profile-header h1 {
+        margin-bottom: 0;
+      }
+      .section {
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 个人信息头部 -->
+    <div class="container-fluid profile-header">
+      <h1>张三的个人简历</h1>
+      <p>前端开发工程师</p>
+    </div>
+    <!-- 主体内容 -->
+    <div class="container">
+      <!-- 教育经历部分 -->
+      <div class="section bg-light p-4">
+        <h2>教育背景</h2>
+        <ul class="list-unstyled">
+          <li>
+            <strong>北京大学</strong>
+            <span class="text-muted">计算机科学与技术专业 - 学士学位</span>
+            <span class="text-muted">2016年9月 - 2020年7月</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 工作经历部分 -->
+      <div class="section bg-light p-4">
+        <h2>工作经历</h2>
+        <ul class="list-unstyled">
+          <li>
+            <strong>阿里巴巴集团</strong>
+            <span class="text-muted">前端开发工程师</span>
+            <span class="text-muted">2020年8月 - 至今</span>
+            <p class="mb-0">负责XXX项目的前端架构设计与开发。</p>
+          </li>
+        </ul>
+      </div>
+      <!-- 技能部分 -->
+      <div class="section bg-light p-4">
+        <h2>技能特长</h2>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <span class="badge badge-primary">HTML5</span>
+          </li>
+          <li class="list-inline-item">
+            <span class="badge badge-primary">CSS3</span>
+          </li>
+          <li class="list-inline-item">
+            <span class="badge badge-primary">JavaScript</span>
+          </li>
+          <li class="list-inline-item">
+            <span class="badge badge-primary">React</span>
+          </li>
+          <li class="list-inline-item">
+            <span class="badge badge-primary">Vue.js</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 联系方式部分 -->
+      <div class="section bg-light p-4">
+        <h2>联系方式</h2>
+        <address>
+          <strong>邮箱：</strong>zhangsan@example.com<br />
+          <strong>电话：</strong>+861234567890<br />
+          <strong>GitHub:</strong
+          ><a href="https://github.com/zhangsan">https://github.com/zhangsan</a>
+        </address>
+      </div>
+    </div>
+    <!-- 引入Bootstrap JavaScript库和jQuery (需放在body标签底部) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
