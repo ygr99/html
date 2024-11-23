@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>油画效果生成器</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        margin-top: 20px;
+      }
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid #ccc;
+        margin-top: 10px;
+      }
+      .file-input {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>油画效果生成器</h1>
+    <input
+      type="file"
+      class="file-input"
+      accept="image/*"
+      onchange="loadImage(this.files[0])"
+    />
+    <div class="container">
+      <div class="image-container">
+        <h2>原图</h2>
+        <img id="originalImage" src="#" alt="原图" style="display: none" />
+      </div>
+      <div class="image-container">
+        <h2>油画效果</h2>
+        <img id="oilPaintImage" src="#" alt="油画效果" style="display: none" />
+      </div>
+    </div>
+
+    <script>
+      function loadImage(file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const img = new Image();
+          img.src = event.target.result;
+          img.onload = function () {
+            document.getElementById("originalImage").src = img.src;
+            document.getElementById("originalImage").style.display = "block";
+            applyOilPaintEffect(img);
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function applyOilPaintEffect(img) {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        oilPaintEffect(canvas, 4, 55);
+
+        document.getElementById("oilPaintImage").src = canvas.toDataURL();
+        document.getElementById("oilPaintImage").style.display = "block";
+      }
+
+      function oilPaintEffect(canvas, radius, intensity) {
+        const width = canvas.width,
+          height = canvas.height,
+          ctx = canvas.getContext("2d"),
+          imgData = ctx.getImageData(0, 0, width, height),
+          pixData = imgData.data,
+          destCanvas = document.createElement("canvas"),
+          dCtx = destCanvas.getContext("2d"),
+          pixelIntensityCount = [];
+
+        destCanvas.width = width;
+        destCanvas.height = height;
+
+        const destImageData = dCtx.createImageData(width, height),
+          destPixData = destImageData.data,
+          intensityLUT = [],
+          rgbLUT = [];
+
+        for (let y = 0; y < height; y++) {
+          intensityLUT[y] = [];
+          rgbLUT[y] = [];
+          for (let x = 0; x < width; x++) {
+            const idx = (y * width + x) * 4,
+              r = pixData[idx],
+              g = pixData[idx + 1],
+              b = pixData[idx + 2],
+              avg = (r + g + b) / 3;
+
+            intensityLUT[y][x] = Math.round((avg * intensity) / 255);
+            rgbLUT[y][x] = {
+              r: r,
+              g: g,
+              b: b,
+            };
+          }
+        }
+
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            pixelIntensityCount.length = 0;
+
+            // Find intensities of nearest pixels within radius.
+            for (let yy = -radius; yy <= radius; yy++) {
+              for (let xx = -radius; xx <= radius; xx++) {
+                if (
+                  y + yy > 0 &&
+                  y + yy < height &&
+                  x + xx > 0 &&
+                  x + xx < width
+                ) {
+                  const intensityVal = intensityLUT[y + yy][x + xx];
+
+                  if (!pixelIntensityCount[intensityVal]) {
+                    pixelIntensityCount[intensityVal] = {
+                      val: 1,
+                      r: rgbLUT[y + yy][x + xx].r,
+                      g: rgbLUT[y + yy][x + xx].g,
+                      b: rgbLUT[y + yy][x + xx].b,
+                    };
+                  } else {
+                    pixelIntensityCount[intensityVal].val++;
+                    pixelIntensityCount[intensityVal].r +=
+                      rgbLUT[y + yy][x + xx].r;
+                    pixelIntensityCount[intensityVal].g +=
+                      rgbLUT[y + yy][x + xx].g;
+                    pixelIntensityCount[intensityVal].b +=
+                      rgbLUT[y + yy][x + xx].b;
+                  }
+                }
+              }
+            }
+
+            pixelIntensityCount.sort((a, b) => b.val - a.val);
+
+            const curMax = pixelIntensityCount[0].val,
+              dIdx = (y * width + x) * 4;
+
+            destPixData[dIdx] = ~~(pixelIntensityCount[0].r / curMax);
+            destPixData[dIdx + 1] = ~~(pixelIntensityCount[0].g / curMax);
+            destPixData[dIdx + 2] = ~~(pixelIntensityCount[0].b / curMax);
+            destPixData[dIdx + 3] = 255;
+          }
+        }
+
+        dCtx.putImageData(destImageData, 0, 0);
+        ctx.drawImage(destCanvas, 0, 0);
+      }
+    </script>
+  </body>
+</html>
