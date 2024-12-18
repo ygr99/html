@@ -1,112 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>溜达丶99</title>
     <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Smiley Sans Oblique";
-            font-weight: "Regular";
-        }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Smiley Sans Oblique";
+        font-weight: "Regular";
+      }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-            margin: 0 auto; /* 添加这一行，使内容居中 */
-            max-width: 800px; /* 可选：限制最大宽度 */
-        }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        max-width: 800px;
+      }
 
-        .title {
-            flex: 0;
-            display: grid;
-            justify-items: center;
-            font-size: 3rem;
-        }
+      .title {
+        flex: 0;
+        display: grid;
+        justify-items: center;
+        font-size: 3rem;
+      }
 
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-items: start;
-            width: 80%;
-        }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-items: start;
+        width: 80%;
+      }
 
-        .time {
-            color: #0000ff;
-            font-size: 0.9rem;
-        }
-        a{
-            color: #0D6EFD;
-            text-decoration: none;
-        }
+      .time {
+        color: #0000ff;
+        font-size: 0.9rem;
+      }
 
-        .footer {
-            flex: 0;
-            padding: 8px 0;
-        }
+      a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+
+      .footer {
+        flex: 0;
+        padding: 8px 0;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <!-- <div class="title">溜达丶99</div> -->
-        <div class="content">
-
-            <p>
-                <span class="time">2024.12.17</span></br>
-                - 添加 <a href="http://123.60.153.252:8088" target="_blank">斗鱼用户弹幕收集</a>，收集斗鱼用户的弹幕</br>
-
-            </p>
-
-            <p>
-                <span class="time">2024.12.14</span></br>
-                - 添加 <a href="https://xn--4gqta1h0zg9yuu7a.fun/html/douyu-opening-diamond-fans-data" target="_blank">溜达丶99——斗鱼钻石粉丝开通记录</a></br>
-                - 添加 <a href="https://xn--4gqta1h0zg9yuu7a.fun/douyu-cs-question-search" target="_blank">斗鱼客服问题搜索</a>，快速查找斗鱼客服问题解决方案，轻松解决您的疑问！</br>
-            </p>
-
-            <p>
-                <span class="time">2024.12.13</span></br>
-                更换网页内容</br>
-                - 添加 <a href="http://123.60.153.252:8086" target="_blank">直播视界</a>，跳转直播间</br>
-                - 添加 <a href="http://123.60.153.252:8084" target="_blank">弹幕管理系统</a>，添加和复制弹幕</br>
-                - 添加 <a href="http://111.229.103.146:9999" target="_blank">弹幕收集</a>，收集斗鱼直播间弹幕</br>
-                
-
-            </p>
-            <!-- <p>
-                <span class="time">2024.06.16</span>
-                更换网站使用的虚拟主机：将原先使用的星辰云每月2元的虚拟主机，替换为<a href="https://www.lcyidc.com/cart?fid=15&gid=46"
-                    target="_blank">领创云1元/年虚拟主机</a>。
-
-            </p>
-            <p>
-                <span class="time">2024.06.08</span>
-                更新本网页样式：代码样式参考原网页 <a href="https://intsensing.cn/" target="_blank">https://intsensing.cn/</a>
-            </p>
-            <p>
-                <span class="time">2024.05.11</span>
-                ygr99.fun 域名过期了，新注册了域名 liuda99.fun，于是顺便创建了本网页，使用 <a href="https://starxn.com/"
-                    target="_blank">星辰云虚拟主机</a>搭建，欢迎访问。</br>
-                网页内容主要为直播相关信息，如直播间录制、直播间弹幕等。</br>
-                相关项目：<a href="http://111.229.103.146:9999" target="_blank">斗鱼简陋弹幕收集</a>
-            </p> -->
-
-        </div>
-        <div class="footer">
-            <a href="https://heynote.xn--4gqta1h0zg9yuu7a.fun" target="_blank">溜达丶99</a>
-        </div>
+      <div class="content" id="content"></div>
+      <div class="footer">
+        <a href="https://heynote.xn--4gqta1h0zg9yuu7a.fun" target="_blank"
+          >溜达丶99</a
+        >
+      </div>
     </div>
 
-</body>
+    <!-- 引入 marked.js 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      // 定义 Markdown 内容
+      const markdownContent = `
 
+### 项目（直播相关）
+
+- [斗鱼直播间弹幕收集](http://111.229.103.146:9999)
+- [弹幕管理系统](http://123.60.153.252:8084)
+- [斗鱼客服问题搜索](https://xn--4gqta1h0zg9yuu7a.fun/douyu-cs-question-search)
+- [斗鱼钻石粉丝开通记录](https://xn--4gqta1h0zg9yuu7a.fun/html/douyu-opening-diamond-fans-data)
+- [斗鱼用户弹幕收集](http://123.60.153.252:8088)
+
+### 历史更新
+
+#### 2024.12.18
+- 修改 采用 Markdown 格式化网页内容并动态渲染
+
+#### 2024.12.17
+- 添加 [斗鱼用户弹幕收集](http://123.60.153.252:8088)，收集斗鱼用户的弹幕
+
+#### 2024.12.14
+- 添加 [斗鱼钻石粉丝开通记录](https://xn--4gqta1h0zg9yuu7a.fun/html/douyu-opening-diamond-fans-data)
+- 添加 [斗鱼客服问题搜索](https://xn--4gqta1h0zg9yuu7a.fun/douyu-cs-question-search)，快速查找斗鱼客服问题解决方案，轻松解决您的疑问！
+
+#### 2024.12.13
+- 更换网页内容
+- 添加 [直播视界](http://123.60.153.252:8086)，跳转直播间
+- 添加 [弹幕管理系统](http://123.60.153.252:8084)，添加和复制弹幕
+- 添加 [斗鱼直播间弹幕收集](http://111.229.103.146:9999)，收集斗鱼直播间弹幕
+`;
+
+      // 使用 marked.js 解析 Markdown
+      const htmlContent = marked.parse(markdownContent);
+
+      // 将解析后的 HTML 插入到页面中
+      const contentElement = document.getElementById("content");
+      contentElement.innerHTML = htmlContent;
+
+      // 动态修改所有链接的行为，使其在新标签页打开
+      const links = contentElement.querySelectorAll("a");
+      links.forEach((link) => {
+        link.setAttribute("target", "_blank");
+      });
+    </script>
+  </body>
 </html>
