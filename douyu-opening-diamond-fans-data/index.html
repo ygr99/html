@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>斗鱼钻石粉丝开通记录</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://ai-public.mastergo.com/gen_page/tailwind-custom.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script
+      src="https://ai-public.mastergo.com/gen_page/tailwind-config.min.js"
+      data-color="#3176FF"
+      data-border-radius="small"
+    ></script>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6">
+      <!-- <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
+        斗鱼钻石粉丝开通记录
+      </h1> -->
+
+      <!-- 汇总信息导航栏 -->
+      <div class="flex justify-center space-x-4 mb-6">
+        <button
+          id="diamondFans"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 summary-button"
+        >
+          全部数据
+        </button>
+        <button
+          id="firstRecord"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 summary-button"
+        >
+          第一次开通
+        </button>
+        <button
+          id="lastRecord"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 summary-button"
+        >
+          最后一次开通
+        </button>
+        <button
+          id="mostFrequent"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 summary-button"
+        >
+          开通次数最多
+        </button>
+      </div>
+
+      <!-- 搜索框 -->
+      <div class="flex justify-center mb-6">
+        <input
+          type="text"
+          id="searchInput"
+          class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="搜索 rid 或 nn，日期（日期 2022-10-18 2023-12-30）"
+        />
+      </div>
+
+      <!-- 排序按钮 -->
+      <div class="flex justify-center space-x-4 mb-6">
+        <button
+          id="sortAsc"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        >
+          按时间升序
+        </button>
+        <button
+          id="sortDesc"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        >
+          按时间降序
+        </button>
+      </div>
+
+      <!-- 数据列表 -->
+      <div
+        id="dataList"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- 数据将动态生成 -->
+      </div>
+    </div>
+
+    <script>
+      let originalData = [];
+      let currentData = [];
+      let currentFilter = "all"; // 可以是 'all', 'first', 'last', 'mostFrequent'
+
+      async function loadDataFromJSON() {
+        try {
+          const response = await fetch("data.json");
+          const jsonData = await response.json();
+          return jsonData;
+        } catch (error) {
+          console.error("加载 data.json 失败:", error);
+          return [];
+        }
+      }
+
+      function renderDataList(data) {
+        const dataList = document.getElementById("dataList");
+        dataList.innerHTML = "";
+
+        data.forEach((item, index) => {
+          const dataCard = document.createElement("div");
+          dataCard.className =
+            "bg-white shadow-lg rounded-lg p-4 hover:shadow-xl transition duration-300 border border-gray-200";
+          dataCard.innerHTML = `
+                  <p class="text-gray-700 font-bold">${index + 1}.</p>
+                  <p class="text-gray-700"><strong>rid:</strong> ${item.rid}</p>
+                  <p class="text-gray-700"><strong>nn:</strong> ${item.nn}</p>
+                  <p class="text-gray-700"><strong>consumeTime:</strong> ${
+                    item.consumeTime
+                  }</p>
+              `;
+          dataList.appendChild(dataCard);
+        });
+      }
+
+      function filterByTimeRange(query, data) {
+        const datePattern =
+          /^日期\s+(\d{4}-\d{2}-\d{2})\s+(\d{4}-\d{2}-\d{2})$/;
+        const match = query.match(datePattern);
+
+        if (!match) return data; // 如果格式不匹配，返回所有数据
+
+        const [, startDateStr, endDateStr] = match;
+        const start = new Date(startDateStr + "T00:00:00");
+        const end = new Date(endDateStr + "T23:59:59");
+
+        return data.filter((item) => {
+          const consumeTime = new Date(item.consumeTime);
+          return consumeTime >= start && consumeTime <= end;
+        });
+      }
+
+      function sortByTime(data, order = "asc") {
+        return data.sort((a, b) => {
+          const timeA = new Date(a.consumeTime);
+          const timeB = new Date(b.consumeTime);
+          return order === "asc" ? timeA - timeB : timeB - timeA;
+        });
+      }
+
+      function filterData(query, data) {
+        let filtered = data;
+
+        // 按时间范围搜索
+        if (query.startsWith("日期")) {
+          filtered = filterByTimeRange(query, data);
+        } else {
+          // 按 rid 或 nn 搜索
+          filtered = data.filter(
+            (item) =>
+              item.rid.toString().includes(query) ||
+              item.nn.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        currentData = filtered;
+        renderDataList(filtered);
+      }
+
+      function getFirstRecord(data) {
+        return [data[0]];
+      }
+
+      function getLastRecord(data) {
+        return [data[data.length - 1]];
+      }
+
+      function getMostFrequentRecord(data) {
+        const ridCount = {};
+        data.forEach((item) => {
+          ridCount[item.rid] = (ridCount[item.rid] || 0) + 1;
+        });
+
+        const mostFrequentRid = Object.keys(ridCount).reduce((a, b) =>
+          ridCount[a] > ridCount[b] ? a : b
+        );
+
+        return data.filter((item) => item.rid == mostFrequentRid);
+      }
+
+      function getDiamondFans(data) {
+        return data; // 假设所有数据都是钻石粉丝开通的
+      }
+
+      async function init() {
+        originalData = await loadDataFromJSON();
+        currentData = originalData;
+        renderDataList(currentData);
+
+        // 搜索框事件监听
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", (e) => {
+            const searchQuery = e.target.value;
+            filterData(searchQuery, currentData);
+          });
+
+        // 汇总信息导航栏事件监听
+        document.getElementById("diamondFans").addEventListener("click", () => {
+          currentFilter = "all";
+          currentData = originalData;
+          document.getElementById("searchInput").value = "";
+          renderDataList(currentData);
+        });
+
+        document.getElementById("firstRecord").addEventListener("click", () => {
+          currentFilter = "first";
+          currentData = getFirstRecord(originalData);
+          document.getElementById("searchInput").value = "";
+          renderDataList(currentData);
+        });
+
+        document.getElementById("lastRecord").addEventListener("click", () => {
+          currentFilter = "last";
+          currentData = getLastRecord(originalData);
+          document.getElementById("searchInput").value = "";
+          renderDataList(currentData);
+        });
+
+        document
+          .getElementById("mostFrequent")
+          .addEventListener("click", () => {
+            currentFilter = "mostFrequent";
+            currentData = getMostFrequentRecord(originalData);
+            document.getElementById("searchInput").value = "";
+            renderDataList(currentData);
+          });
+
+        // 按时间排序
+        document.getElementById("sortAsc").addEventListener("click", () => {
+          currentData = sortByTime(currentData, "asc");
+          renderDataList(currentData);
+        });
+
+        document.getElementById("sortDesc").addEventListener("click", () => {
+          currentData = sortByTime(currentData, "desc");
+          renderDataList(currentData);
+        });
+      }
+
+      // 启动页面
+      init();
+    </script>
+  </body>
+</html>
